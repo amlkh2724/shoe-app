@@ -1,0 +1,23 @@
+.shoes-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* width: 100vw;
+    height: 100vh; */
+    gap: 2rem;
+    margin-top: 5rem;
+    padding: 2rem;
+    /* background-color: red; */
+}
+.shoe-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 20rem;
+    height: 12rem;
+    border: 2px solid black;
+
+}

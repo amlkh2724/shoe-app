@@ -1,71 +1,61 @@
-/* eslint-disable no-unused-vars */
-import axios from "axios"
+// /* eslint-disable no-unused-vars */
+
+
+import axios from "axios";
 
 const API = {
   shoes: axios.create({
-    baseURL: 'https://63f774f2833c7c9c60849a18.mockapi.io/shoes'
+    baseURL: "https://shoe-app-b0573-default-rtdb.europe-west1.firebasedatabase.app/",
   }),
 
   async addShoes(content) {
     try {
-      const response = await this.shoes.post('/', content);
+      const response = await this.shoes.post("/shoes.json", content);
       return response;
     } catch (error) {
-      throw new Error('addShoes failed ...', error);
+      throw new Error("addShoes failed ...", error);
     }
   },
 
-  async editShoes(name, field) {
+  async editShoes(description, field) {
     try {
       const allShoes = await this.getShoes();
-      const shoesToDelete = allShoes.filter(element => element.description === name);
+      const shoesToUpdate = allShoes.find((shoe) => shoe.description === description);
+      const fieldToUpdate = field.split("*")[0];
+      const valueToUpdate = field.split("*")[1];
 
-      const imgUrl = shoesToDelete[0].imgUrl;
-      const description = shoesToDelete[0].description;
-      const price = shoesToDelete[0].price;
-
-      const fieldToEdit = field.split('*');
-
-      let obj = {};
-
-      switch (fieldToEdit[0]) {
-        case 'imgUrl':
-          obj = { imgUrl: `${fieldToEdit[1]}` }
-          break;
-        case 'description':
-          obj = { description: `${fieldToEdit[1]}` }
-          break;
-        case 'price':
-          obj = { price: `${fieldToEdit[1]}` }
-          break;
-        default: throw new Error('switch case went wrong');
-      }
-
-      this.shoes.put(`/${shoesToDelete[0].id}`, obj);
+      const updatedShoes = { ...shoesToUpdate, [fieldToUpdate]: valueToUpdate };
+      await this.shoes.put(`/shoes/${shoesToUpdate.id}.json`, updatedShoes);
+      return updatedShoes;
     } catch (error) {
-      throw new Error('deleteShoes failed ...', error);
+      throw new Error("editShoes failed ...", error);
     }
   },
 
   async deleteShoes(description) {
     try {
       const allShoes = await this.getShoes();
-      const shoesToDelete = allShoes.filter(element => element.description === description);
-      console.log(shoesToDelete);
-      this.shoes.delete(`/${shoesToDelete[0].id}`);
+      const shoesToDelete = allShoes.find((shoe) => shoe.description === description);
+      const response = await this.shoes.delete(`/shoes/${shoesToDelete.id}.json`);
+      return response;
     } catch (error) {
-      throw new Error('deleteShoes failed ...', error);
+      throw new Error("deleteShoes failed ...", error);
     }
   },
 
   async getShoes() {
     try {
-      const response = await this.shoes.get('/');
-      return response.data;
+      const response = await this.shoes.get("/shoes.json");
+      const shoesData = response.data;
+      const shoes = [];
+      for (let key in shoesData) {
+        shoes.push({ id: key, ...shoesData[key] });
+      }
+      return shoes;
     } catch (error) {
-      throw new Error('getShoes failed ...', error);
+      throw new Error("getShoes failed ...", error);
     }
-  }
-}
+  },
+};
 
-export default API
+export default API;

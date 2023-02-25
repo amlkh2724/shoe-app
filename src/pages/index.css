@@ -6,3 +6,25 @@
 img {
     width: 9rem;
 }
+
+.container > button{
+    margin: 1rem;
+    width: 11rem;
+    height: 2rem;
+    background-color: black;
+    color: white;
+}
+label{
+    display: flex;
+    margin: 1rem;    
+}
+.submit{
+    margin: 1rem;
+    width: 11rem;
+    height: 2rem;
+    background-color: black;
+    color: white;
+}
+.submit:hover{
+    background-color:brown;
+}

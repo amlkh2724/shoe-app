@@ -4,13 +4,14 @@
     box-sizing: border-box;
 }
 
-
+body{
+    background-image: linear-gradient(to right, rgb(235, 235, 235) , rgb(65, 65, 53));;}
 header {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 4rem;
-    background-color: rgba(60, 39, 39, 0.499);
+    background-color: rgb(104, 104, 104);
 }
 
 ul {
@@ -20,5 +21,12 @@ ul {
 }
 
 li {
-    background-color: rgb(179, 148, 148);
+    display: flex;
+    background-color: rgba(255, 247, 247, 0.446);
+    width: 5rem;
+    height: 2rem;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
 }

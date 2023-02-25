@@ -44,6 +44,7 @@ const Products = () => {
 
   return (
     <>
+    <div className='container'>
       <button onClick={() => setIsFormOpen(true)}>Add a shoe with your sizes</button>
       {isFormOpen && (
         <form onSubmit={handleSubmit}>
@@ -59,11 +60,13 @@ const Products = () => {
             Price:
             <input type="text" name="price" value={formData.price} onChange={handleInputChange} />
           </label>
-          <button type="submit">Add Shoes</button>
+          <button className='submit' type="submit">Add Shoes</button>
         </form>
+        
       )}
       <div className="gap" />
       <Shoes shoesList={shoesList} />
+      </div>
     </>
   );
 };

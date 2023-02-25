@@ -14,7 +14,7 @@ const Shoes = () => {
       }
     }
     fetchShoes();
-  }, []);
+  },[shoes]);
 
   const handleDelete = async (description) => {
     try {
@@ -49,7 +49,7 @@ const Shoes = () => {
           <h3>${shoe.price}</h3>
           <div className="shoe-card-actions">
             <button onClick={() => handleDelete(shoe.description)}>Delete</button>
-            <button onClick={() => handleEdit(shoe.description, `description*${shoe.description}`)}>Edit description</button>
+            <button onClick={() => handleEdit(shoe.description, `description*setdescription`)}>Edit description</button>
             <button onClick={() => handleEdit(shoe.description, `price*${+shoe.price + 10}`)}>Increase price</button>
           </div>
         </div>

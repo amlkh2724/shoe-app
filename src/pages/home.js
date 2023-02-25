@@ -1,12 +1,12 @@
-import React from 'react'
-// import Shoes from '../components/homeshoes/shoesmarket'
+import React from 'react';
+import './backgroundimg.css';
+
 const HomePage = () => {
   return (
-    <>
-      <div>my home page</div>
+    <div className='containerww'>
+      <div className='product-link'>go to products and make you shoes</div>
+    </div>
+  );
+};
 
-    </>
-
-  )
-}
-export default HomePage
+export default HomePage;
